@@ -17,7 +17,6 @@ public class BaseBodyPage {
     String loginButton="//button[@data-role='login-button']";
     String BuyButton="//button[contains(text(),'Купить')]";
 
-
     public BaseBodyPage(WebDriver webdriver) {
         this.webdriver = webdriver;
         PageFactory.initElements(webdriver,this);
@@ -39,6 +38,7 @@ public class BaseBodyPage {
         webdriver.findElement(By.xpath("//div[@class='profile-wishlist__remove-modal']//div[contains(text(),'Удалить')]")).click();
         return addItem;
     }
+
     public BaseBodyPage GoToWishList(){
         webdriver.findElement(By.xpath("//a[@class='ui-link wishlist-link']")).sendKeys(Keys.ENTER);
         return new BaseBodyPage(webdriver);

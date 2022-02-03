@@ -8,7 +8,6 @@ public class LoginINOutTest extends BaseArrage{
     private String testLogin="lightsteach@yandex.ru";
     private String testPassword="test123456";
     protected static String URL="https://www.dns-shop.ru/";
-
     @Test
     @DisplayName("Авторизация пользователя")
     public void LoginINOutTest () {

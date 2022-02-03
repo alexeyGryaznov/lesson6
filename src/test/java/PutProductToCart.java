@@ -7,7 +7,6 @@ public class PutProductToCart extends BaseArrage {
     protected static String URL="https://www.dns-shop.ru/";
     String product="утюг";
     String pricebefore="1000";
-
     @Test
     @DisplayName("добавление товара со стоимостью менее 1000 в корзину")
     public void PutProductToCart(){

@@ -33,6 +33,7 @@ public class HeaderOnPage {
         webdriver.findElement(By.xpath("//div[@class='block-other-login-methods__password-caption']")).click();
         return new HeaderOnPage(webdriver);
     }
+
     public HeaderOnPage InputDataInLoginForm(String testLogin,String testPassword){
         login.sendKeys(testLogin);
         password.sendKeys(testPassword);
@@ -73,8 +74,6 @@ public class HeaderOnPage {
         new WebDriverWait(webdriver,3).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='header-profile__level']")));
         return new HeaderOnPage(webdriver);
 }
-
-
     public HeaderOnPage InputSearchProduct(String product) {
         String Search="//div[@class='header-menu-wrapper']//input[@placeholder='Поиск по сайту']";
         webdriver.findElement(By.xpath(Search)).sendKeys(product);
