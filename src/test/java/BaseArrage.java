@@ -1,8 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-
 import java.util.concurrent.TimeUnit;
 
 public class BaseArrage {
@@ -14,5 +12,4 @@ public class BaseArrage {
         webdriver.manage().window().setSize(new Dimension(1500,800));
         return webdriver;
     }
-
 }

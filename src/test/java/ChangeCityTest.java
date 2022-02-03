@@ -7,7 +7,6 @@ public class ChangeCityTest extends BaseArrage{
 
     private  String location="Москва";
     protected static String URL="https://www.dns-shop.ru/";
-
     @Test
     @DisplayName("Смена локации")
     public void ChangeCityTest() throws InterruptedException {

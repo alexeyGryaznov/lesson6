@@ -19,5 +19,4 @@ public class AddProductToWishList extends BaseArrage{
         String addItem=new BaseBodyPage(webdriver).AddProduktToWish().GoToWishList().CheckAddItemAndClear();
         Assertions.assertTrue(expextItem.contains(addItem));
     }
-
 }
