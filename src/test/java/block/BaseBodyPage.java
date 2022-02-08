@@ -1,3 +1,7 @@
+package block;
+
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -21,16 +25,17 @@ public class BaseBodyPage {
         this.webdriver = webdriver;
         PageFactory.initElements(webdriver,this);
     }
-
+    @Step("Считывание кода товара на странице товара")
     public String CheckItemProduct(){
         return  webdriver.findElement(By.xpath("//div[@class='product-card-top__code']")).getText();
     }
-
+    @Step("Добавление товара в список желаний нажатием на кнопку в карточке товара")
     public BaseBodyPage AddProduktToWish(){
         new WebDriverWait(webdriver,3).until(ExpectedConditions.presenceOfElementLocated(By.xpath(buttonWish)));
         webdriver.findElement(By.xpath(buttonWish)).sendKeys(Keys.ENTER);
         return this;
     }
+    @Step("Считывание кода товара из карточки товара и очистка листа желаний")
     public String CheckAddItemAndClear(){
         String addItem=webdriver.findElement(By.xpath("//div[@data-id='product']")).getAttribute("data-code");
         webdriver.findElement(By.xpath("//button[@data-role='clear-wishlist']")).click();
@@ -38,13 +43,14 @@ public class BaseBodyPage {
         webdriver.findElement(By.xpath("//div[@class='profile-wishlist__remove-modal']//div[contains(text(),'Удалить')]")).click();
         return addItem;
     }
-
+    @Step("Открытие карточки желаний с товарами через Header")
     public BaseBodyPage GoToWishList(){
         webdriver.findElement(By.xpath("//a[@class='ui-link wishlist-link']")).sendKeys(Keys.ENTER);
         return new BaseBodyPage(webdriver);
     }
-
+    @Step("Устанавливаем фильтр подбора товара по стоимости не  более {priceBefore}")
     public BaseBodyPage FilterOnPrice(String priceBefore) {
+        Allure.parameter("максимальная стоимость: ",priceBefore);
         WebDriverWait waiter=new WebDriverWait(webdriver,3);
         waiter.until(ExpectedConditions.presenceOfElementLocated(By.xpath(loginButton)));
         WebElement scroll= webdriver.findElement(By.xpath(loginButton));
@@ -55,18 +61,18 @@ public class BaseBodyPage {
         waiter.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='picked-filter'][contains(text(),'Цена: до 1 000 ₽')]")));
         return new BaseBodyPage(webdriver);
     }
-
+    @Step("Нажимаем кнопку Купить в карточке товара")
     public BaseBodyPage AddProductToCart() {
         new WebDriverWait(webdriver,3).until(ExpectedConditions.presenceOfElementLocated(By.xpath(BuyButton)));
         webdriver.findElement(By.xpath(BuyButton)).sendKeys(Keys.ENTER);
         return this;
     }
-
+    @Step("открытие корзины с товарами")
     public BaseBodyPage GoToCart() {
         webdriver.findElement(By.xpath("//a[@data-commerce-target='CART']")).sendKeys(Keys.ENTER);
         return new BaseBodyPage(webdriver);
     }
-
+    @Step("приведение стоимости к числовому значению")
     public String parcerPrice(){
         String priceWithRUB=webdriver.findElement(By.xpath("//div[@class='cart-items__content-container']//span[@class='price__current']")).getText();
         String[] priceOnlycost = priceWithRUB.split(" ",2);
